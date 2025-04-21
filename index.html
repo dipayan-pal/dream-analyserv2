@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dream Analyzer</h1>
+        <div class="dream-form">
+            <textarea id="dreamInput" placeholder="Describe your dream here..." rows="6"></textarea>
+            <button id="analyzeBtn">Analyze Dream</button>
+        </div>
+        <div id="result" class="result-container">
+            <div id="loading" class="loading hidden">Analyzing your dream...</div>
+            <div id="analysis" class="analysis hidden"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
