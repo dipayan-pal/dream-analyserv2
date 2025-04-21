@@ -6,20 +6,21 @@
 }
 
 :root {
-    --accent-color: #ff00ff;
-    --accent-hover: #e100e1;
-    --bg-color: #0a0a1a;
-    --card-bg: #151528;
+    --bg-dark: #0B1219;
+    --card-bg: #151C24;
+    --accent-cyan: #00E5BE;
+    --accent-hover: #00C4A3;
     --text-color: #ffffff;
-    --input-bg: #1e1e35;
-    --border-color: #2a2a4a;
-    --gradient-start: #2d1faf;
-    --gradient-mid: #5c1b9e;
-    --gradient-end: #6e0439;
+    --text-secondary: #8B95A0;
+    --input-bg: #1C2631;
+    --border-color: #2A3441;
+    --gradient-start: #00E5BE;
+    --gradient-mid: #00D4B0;
+    --gradient-end: #00C4A3;
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-dark);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -34,8 +35,8 @@ body::before {
     position: absolute;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, var(--gradient-mid) 0%, transparent 70%);
-    opacity: 0.1;
+    background: radial-gradient(circle at center, var(--accent-cyan) 0%, transparent 70%);
+    opacity: 0.05;
     animation: rotate 20s linear infinite;
     z-index: -1;
 }
@@ -65,16 +66,16 @@ body::before {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+    background: linear-gradient(45deg, var(--accent-cyan), transparent);
     border-radius: 16px;
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.2;
     animation: borderGlow 3s ease-in-out infinite;
 }
 
 @keyframes borderGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 0.8; }
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.3; }
 }
 
 h1 {
@@ -82,22 +83,45 @@ h1 {
     text-align: center;
     margin-bottom: 2rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(to right, var(--accent-cyan), var(--accent-hover));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     font-weight: bold;
 }
 
-h1::after {
-    content: '🌙';
+.moon-logo {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(-10deg);
+}
+
+.moon-logo::before {
+    content: '';
     position: absolute;
-    right: -40px;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    top: -2px;
+    left: 4px;
+}
+
+@keyframes moonGlow {
+    0%, 100% { box-shadow: 0 0 10px var(--accent-cyan); }
+    50% { box-shadow: 0 0 20px var(--accent-cyan); }
+}
+
+.moon-logo {
+    animation: moonGlow 3s ease-in-out infinite;
 }
 
 .dream-form {
@@ -120,13 +144,13 @@ textarea {
 
 textarea:focus {
     outline: none;
-    border-color: var(--gradient-mid);
-    box-shadow: 0 0 15px rgba(121, 40, 202, 0.3);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px rgba(0, 229, 190, 0.15);
 }
 
 button {
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
-    color: white;
+    background-color: var(--accent-cyan);
+    color: var(--bg-dark);
     border: none;
     padding: 1rem;
     border-radius: 8px;
@@ -135,7 +159,7 @@ button {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
 }
 
 button::before {
@@ -147,8 +171,9 @@ button::before {
 }
 
 button:hover {
+    background-color: var(--accent-hover);
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(121, 40, 202, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 229, 190, 0.2);
 }
 
 .result-container {
@@ -158,12 +183,8 @@ button:hover {
 
 .loading {
     text-align: center;
-    color: var(--text-color);
+    color: var(--accent-cyan);
     font-style: italic;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
 
 .loading::after {
@@ -189,6 +210,7 @@ button:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
+    color: var(--text-secondary);
 }
 
 .analysis::before {
@@ -198,7 +220,7 @@ button:hover {
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+    background: var(--accent-cyan);
 }
 
 .hidden {
